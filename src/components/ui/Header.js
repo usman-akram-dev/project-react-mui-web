@@ -77,6 +77,7 @@ export default function Header(props) {
   const handleClose = (e)=>{
     setAnchorEl(null);
     setOpen(false);
+    
 
   }
 
@@ -162,9 +163,10 @@ export default function Header(props) {
               Free Estimate
             </Button>
             <Menu id="simple-menu" anchorEl={anchorEl} open={open} onClose={handleClose} MenuListProps={{onMouseLeave : handleClose}}>
-              <MenuItem onClick={handleClose}>Custom Software Development</MenuItem>
-              <MenuItem onClick={handleClose}>Mobile App Development</MenuItem>
-              <MenuItem onClick={handleClose}>Website Development</MenuItem>
+            <MenuItem onClick={()=>{handleClose(); setValue(1)}} component={Link} to='/services'>Services</MenuItem>
+              <MenuItem onClick={()=>{handleClose(); setValue(1)}} component={Link} to='/customsoftware'>Custom Software Development</MenuItem>
+              <MenuItem onClick={()=>{handleClose(); setValue(1)}} component={Link} to='/mobileapps'>Mobile App Development</MenuItem>
+              <MenuItem onClick={()=>{handleClose(); setValue(1)}} component={Link} to='/websites'>Website Development</MenuItem>
             </Menu>
           </Toolbar>
         </AppBar>
