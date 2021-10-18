@@ -9,6 +9,8 @@ import Button from "@material-ui/core/Button";
 import { Link } from "react-router-dom";
 import  Menu  from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
+import useMediaQuery  from "@material-ui/core/useMediaQuery";
+import  {useTheme}  from "@material-ui/core/styles";
 
 
 import logo from "../../assets/logo.svg";
@@ -32,9 +34,22 @@ const useStyles = makeStyles(theme => ({
   toolbarMargin: {
     ...theme.mixins.toolbar,
     marginBottom: "3em",
+    [theme.breakpoints.down("md")]:{
+      marginBottom: "2em",
+    },
+    [theme.breakpoints.down("xs")]:{
+      marginBottom: "1.25em",
+    }
   },
   logo: {
     height: "8em",
+    [theme.breakpoints.down("md")]:{
+      height: "7em"
+    },
+    [theme.breakpoints.down("xs")]:{
+      height: "5.5em"
+    },
+
   },
   tabContainer: {
     marginLeft: "auto",
@@ -75,10 +90,12 @@ const useStyles = makeStyles(theme => ({
 
 export default function Header(props) {
   const classes = useStyles();
+  const theme = useTheme();
   const [value, setValue] = useState(0);
   const [anchorEl , setAnchorEl]= useState(null);
   const [open, setOpen] = useState(false);
   const [selectedIndex , setSelectedIndex] = useState(0)
+  const matches = useMediaQuery(theme.breakpoints.down("md"));
 
   const menuOptions = [
     { name: "Services", link: "/services"},
@@ -213,23 +230,9 @@ export default function Header(props) {
 
   }, [value]);
 
-  return (
+  const tabs = (
     <React.Fragment>
-      <ElevationScroll>
-        <AppBar>
-          <Toolbar disableGutters>
-            <Button
-              disableRipple
-              component={Link}
-              to='/'
-              className={classes.logoContainer}
-              onClick={() => {
-                setValue(0);
-              }}
-            >
-              <img alt='company logo' className={classes.logo} src={logo} />
-            </Button>
-            <Tabs
+      <Tabs
               value={value}
               onChange={handleChange}
               className={classes.tabContainer}
@@ -286,6 +289,27 @@ export default function Header(props) {
          ))
        }
        </Menu>
+
+    </React.Fragment>
+  )
+
+  return (
+    <React.Fragment>
+      <ElevationScroll>
+        <AppBar>
+          <Toolbar disableGutters>
+            <Button
+              disableRipple
+              component={Link}
+              to='/'
+              className={classes.logoContainer}
+              onClick={() => {
+                setValue(0);
+              }}
+            >
+              <img alt='company logo' className={classes.logo} src={logo} />
+            </Button>
+            {matches ? null : tabs}
           </Toolbar>
         </AppBar>
       </ElevationScroll>
