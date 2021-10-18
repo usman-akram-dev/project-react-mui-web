@@ -77,6 +77,25 @@ export default function Header(props) {
   const [value, setValue] = useState(0);
   const [anchorEl , setAnchorEl]= useState(null);
   const [open, setOpen] = useState(false);
+  const [selectedIndex , setSelectedIndex] = useState(0)
+
+  const menuOptions = [
+    { name: "Services", link: "/services"},
+    {
+      name: "Custom Software Development",
+      link: "/customsoftware"
+  
+    },
+    {
+      name: "Mobile App Development",
+      link: "/mobileapps"
+    },
+    {
+      name: "Website Development",
+      link: "/websites"
+   
+    }
+  ];
 
   
   const handleChange = (e, value) => {
@@ -97,6 +116,12 @@ export default function Header(props) {
 
   }
 
+  const handleMenuItemClick = (e,i)=>{
+    setAnchorEl(null);
+    setOpen(false);
+    setSelectedIndex(i);
+
+  }
   useEffect(() => {
     if (window.location.pathname === "/" && value !== 0) {
       setValue(0);
@@ -179,11 +204,13 @@ export default function Header(props) {
               Free Estimate
             </Button>
             <Menu id="simple-menu" anchorEl={anchorEl} open={open} onClose={handleClose} classes={{ paper: classes.menu}} MenuListProps={{onMouseLeave : handleClose}} elevation={0}>
-            <MenuItem onClick={()=>{handleClose(); setValue(1)}} classes={{root:classes.menuItem}} component={Link} to='/services'>Services</MenuItem>
-              <MenuItem onClick={()=>{handleClose(); setValue(1)}} classes={{root:classes.menuItem}} component={Link} to='/customsoftware'>Custom Software Development</MenuItem>
-              <MenuItem onClick={()=>{handleClose(); setValue(1)}} classes={{root:classes.menuItem}} component={Link} to='/mobileapps'>Mobile App Development</MenuItem>
-              <MenuItem onClick={()=>{handleClose(); setValue(1)}} classes={{root:classes.menuItem}} component={Link} to='/websites'>Website Development</MenuItem>
-            </Menu>
+       {
+         menuOptions.map((option,i)=>(
+
+          <MenuItem key={option} component={Link} to={option.link} classes={{root: classes.menuItem}} onClick={(event)=>{handleMenuItemClick(event,i); setValue(1); handleClose()}} selected={i== selectedIndex && value===1}>{option.name} </MenuItem>
+         ))
+       }
+       </Menu>
           </Toolbar>
         </AppBar>
       </ElevationScroll>
