@@ -127,7 +127,7 @@ export default function Header(props) {
   const [openDrawer, setOpenDrawer] = useState(false);
   const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent);
   const matches = useMediaQuery(theme.breakpoints.down("md"));
-
+  // eslint-disable-next-line
   const menuOptions = [
     { name: "Services", link: "/services", activeIndex: 1, selectedIndex: 0 },
     {
@@ -149,7 +149,7 @@ export default function Header(props) {
       selectedIndex: 3,
     },
   ];
-
+  // eslint-disable-next-line
   const routes = [
     { name: "Home", link: "/", activeIndex: 0 },
     {
@@ -307,6 +307,7 @@ export default function Header(props) {
             button
             component={Link}
             to='/estimate'
+            // eslint-disable-next-line
             selected={value === 5}
           >
             <ListItemText className={classes.drawerItem} disableTypography>
