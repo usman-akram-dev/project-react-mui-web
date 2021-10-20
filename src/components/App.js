@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Header from "../components/ui/Header";
 import Footer from "../components/ui/Footer";
+import LandingPage from "./LandingPage";
 import { ThemeProvider } from "@material-ui/styles";
 import theme from "./ui/Theme";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
@@ -22,7 +23,7 @@ function App() {
           <Route
             exact
             path='/'
-            component={() => <div style={{ height: "2000px" }}>Home</div>}
+            component={LandingPage}
           />
           <Route exact path='/services' component={() => <div>Services</div>} />
           <Route
