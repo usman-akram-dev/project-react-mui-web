@@ -9,7 +9,8 @@ import useMediaQuery  from "@material-ui/core/useMediaQuery";
 import ButtonArrow from "./ui/ButtonArrow";
 import animationData from "../animations/landinganimation/data";
 import customSoftwareIcon from "../assets/Custom Software Icon.svg";
-import mobileAppsIcon from "../assets/mobileIcon.svg"
+import mobileAppsIcon from "../assets/mobileIcon.svg";
+import websitesIcon from "../assets/websiteIcon.svg";
 
 const useStyles = makeStyles((theme) => ({
   animation: {
@@ -174,6 +175,26 @@ export default function LandingPage() {
           </Grid>
           <Grid item style={{marginRight: matchesSM ? 0 : "5em"  }}>
           <img className={classes.icon} alt="mobile phone icon" src={mobileAppsIcon} />
+          </Grid>
+        </Grid>
+      </Grid>
+      <Grid item>
+        {/*-----Custom Software Block-----*/}
+        <Grid container direction="row" className={classes.serviceContainer} justify={matchesSM ? "center" : undefined}>
+          <Grid item style={{marginLeft: matchesSM ? 0 : "5em" , textAlign : matchesSM ? "center" : undefined}} >
+            <Typography variant="h4">Website Development</Typography>
+            <Typography variant="subtitle1" className={classes.subtitle}>Reach More, Discover More, Sell More</Typography>
+            <Typography variant="subtitle1">Optimized for Search Engines, build for speed.</Typography>
+          <Button variant="outlined" className={classes.learnButton}><span style={{ marginRight: 10 }}>Learn More</span>    
+          <ButtonArrow
+                    width="10"
+                    height="10"
+                    fill={theme.palette.common.blue}
+                  />
+                  </Button>
+          </Grid>
+          <Grid item>
+          <img className={classes.icon} alt="wesbite icon" src={websitesIcon} />
           </Grid>
         </Grid>
       </Grid>
